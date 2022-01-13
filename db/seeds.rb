@@ -5,3 +5,28 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts 'Delete flats...'
+Flat.destroy_all
+
+puts 'creating flats...'
+Flat.create!(
+  name: 'Light & Spacious Garden Flat London',
+  address: '10 Clifton Gardens London W9 1DT',
+  description: 'A lovely summer feel for this spacious garden flat. Two double bedrooms, open plan living area, large kitchen and a beautiful conservatory',
+  price_per_night: 75,
+  number_of_guests: 3
+)
+
+puts 'making faker flats...'
+5.times do
+  Flat.create!(
+    name: Faker::Address.street_name,
+    address: Faker::Address.street_address,
+    description: Faker::Quote.famous_last_words,
+    price_per_night: rand(50..150),
+    number_of_guests: rand(2..8)
+)
+end
+
+puts 'finished creating flats...'
